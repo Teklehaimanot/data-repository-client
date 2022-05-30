@@ -39,7 +39,7 @@ const DataList = () => {
     },
   ]);
   return (
-    <div className="w-5/6  shadow-md sm:rounded-lg float-right ">
+    <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
       <table className="w-full text-left ">
         <thead className=" text-xl text-primary bg-secondary ">
           <DataSetTitle />

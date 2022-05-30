@@ -4,7 +4,7 @@ import DataList from '../components/DataList';
 const Dashboard = () => {
   return (
     <div className="flex flex-row mt-10 ml-5">
-      <div className="w-1/7 mr-10  shadow-md bg-primary text-secondary px-1 ">
+      <div className="w-1/7 mr-10  shadow-2xl bg-primary text-secondary px-1 ">
         <ul className="relative">
           <li className="relative">
             <a
