@@ -2,18 +2,19 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from '../base';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const url = 'http://localhost:5000/';
+  const url = BASE_URL;
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post(`${url}api/user/auth`, {
+      .post(`${url}/api/user/auth`, {
         username: email,
         password: password,
       })

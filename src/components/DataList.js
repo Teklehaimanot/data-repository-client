@@ -1,15 +1,16 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { BASE_URL } from '../base';
 import DataSetTitle from './DataSetTitle';
 import ListItem from './ListItem';
 
 const DataList = () => {
-  const url = 'http://localhost:5000/';
+  const url = BASE_URL;
   const [dataset, setDataset] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${url}api/dataset`, {
+      .get(`${url}/api/dataset`, {
         headers: {
           'Content-Type': 'application/json',
           'x-auth':
