@@ -1,10 +1,15 @@
 import React from 'react';
 
-const SearchBar = () => {
+const SearchBar = ({ onToggle, formToggle }) => {
   return (
     <div className="flex justify-between p-6 ">
-      <div className="flex items-center bg-gray border border-gray text-gray text-2xl rounded-lg px-5 py-2 hover:bg-blue hover:text-secondary">
-        Create
+      <div
+        onClick={onToggle}
+        className={`flex items-center bg-gray border border-gray text-${
+          formToggle ? 'red-light' : 'primary'
+        }  text-2xl rounded-lg px-5 py-2 hover:bg-blue hover:text-secondary`}
+      >
+        {formToggle ? 'Cancel' : 'Create'}
       </div>
       <div className="w-2/5 ">
         <form className="flex items-center">

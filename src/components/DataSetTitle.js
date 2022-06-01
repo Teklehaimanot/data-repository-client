@@ -7,7 +7,7 @@ const DataSetTitle = () => {
         Dataset _Name
       </th>
       <th scope="col" className="px-6 py-3">
-        Data Type
+        Dataset Type
       </th>
       <th scope="col" className="px-6 py-3">
         Sample Size
