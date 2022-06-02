@@ -16,22 +16,59 @@ const DataList = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${url}/api/dataset`, {
+    const getDataset = async () => {
+      const getDatasetFromServer = await fetchDataset();
+      setDataset(getDatasetFromServer);
+    };
+
+    getDataset();
+  }, []);
+
+  const fetchDataset = async () => {
+    try {
+      const res = await axios.get(`${url}/api/dataset`, {
         headers: {
           'Content-Type': 'application/json',
           'x-auth': `${localStorage.getItem('token')}`,
         },
-      })
-      .then((res) => {
-        setDataset(res.data.dataset);
       });
-  }, []);
+      const dataset = await res.data.dataset;
+      return dataset;
+    } catch (error) {
+      alert("can't reach the server");
+    }
+  };
+
+  // const addDataset = async (task) => {
+  //   const resOne = await axios(`${url}/api/dataset`, {
+  //     method:'POST',
+  //     headers: {
+  //       'content-type': 'application/json',
+  //       'x-auth': `${localStorage.getItem('token')}`,
+  //     },
+  //     task,
+  //   });
+  //   const res = await resOne.data;
+  //   console.log('data', res);
+  // };
+  const addDataset = async (task) => {
+    const res = await fetch(`${url}/api/dataset`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-auth': `${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify(task),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   return (
     <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
       <SearchBar onToggle={handleToggle} formToggle={formToggle} />
       {formToggle ? (
-        <Form />
+        <Form addDataset={addDataset} />
       ) : (
         <table className="w-full text-left ">
           <thead className=" text-xl text-primary bg-secondary ">
