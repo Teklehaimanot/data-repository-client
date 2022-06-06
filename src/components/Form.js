@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { BASE_URL } from '../base';
+import axios from 'axios';
 
 const Form = ({ addDataset }) => {
   const [dataset_name, setDatasetName] = useState('');
@@ -9,8 +11,11 @@ const Form = ({ addDataset }) => {
   const [sex_coverage, setSexCoverage] = useState('Male');
   const [data_collection_start_date, setStartDate] = useState('');
   const [data_collection_end_date, setEndDate] = useState('');
+  const [file, setFile] = useState([]);
+  // const url = BASE_URL;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log(file);
     e.preventDefault();
     if (
       !dataset_name &&
@@ -25,17 +30,21 @@ const Form = ({ addDataset }) => {
       alert('please fill all input filds');
     }
     try {
-      addDataset({
-        dataset_name,
-        data_type,
-        sample_size,
-        study_type,
-        area_coverage,
-        sex_coverage,
-        data_collection_start_date,
-        data_collection_end_date,
-      });
+      addDataset(
+        {
+          dataset_name,
+          data_type,
+          sample_size,
+          study_type,
+          area_coverage,
+          sex_coverage,
+          data_collection_start_date,
+          data_collection_end_date,
+        },
+        file
+      );
       clearDataSet();
+      // addDataset(file);
     } catch (error) {
       alert(error);
     }
@@ -164,16 +173,17 @@ const Form = ({ addDataset }) => {
             required
           />
         </div>
-        {/* <div className="flex flex-col p-4 w-1/3 shadow-xl my-10">
+        <div className="flex flex-col p-4 w-1/3 shadow-xl my-10">
           <label className="text-primary text-2xl py-2" htmlFor="">
             Upload File
           </label>
           <input
             type="file"
             placeholder=""
+            onChange={(e) => setFile(e.target.files[0])}
             className=" p-2 bg-white border border-primary text-xl rounded-sm focus:blue focus:border-blue"
           />
-        </div> */}
+        </div>
         <div className="flex px-5 my-10">
           <input
             type="submit"

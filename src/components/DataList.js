@@ -51,7 +51,25 @@ const DataList = () => {
   //   const res = await resOne.data;
   //   console.log('data', res);
   // };
-  const addDataset = async (task) => {
+  const addDataset = async (task, file) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const uploadedFile = await axios.post(
+        `${url}/api/dataset/upload`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'x-auth': `${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      console.log(uploadedFile.data);
+    } catch (error) {
+      console.log(error);
+    }
     const res = await fetch(`${url}/api/dataset`, {
       method: 'POST',
       headers: {
@@ -61,7 +79,8 @@ const DataList = () => {
       body: JSON.stringify(task),
     });
     const data = await res.json();
-    console.log(data);
+    setDataset([...dataset, data.dataset]);
+    setFormToggle(!formToggle);
   };
 
   return (
