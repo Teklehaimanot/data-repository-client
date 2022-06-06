@@ -42,7 +42,6 @@ const DataList = () => {
   const addDataset = async (task, file) => {
     const formData = new FormData();
     formData.append('file', file);
-
     const reqOne = await axios.post(`${url}/api/dataset`, task, {
       headers: {
         'content-type': 'application/json',

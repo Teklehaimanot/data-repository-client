@@ -9,6 +9,7 @@ const Form = ({ addDataset }) => {
   const [data_collection_start_date, setStartDate] = useState('');
   const [data_collection_end_date, setEndDate] = useState('');
   const [file, setFile] = useState([]);
+  const [file_name, setFileName] = useState();
   // const url = BASE_URL;
 
   const handleSubmit = async (e) => {
@@ -37,6 +38,7 @@ const Form = ({ addDataset }) => {
           sex_coverage,
           data_collection_start_date,
           data_collection_end_date,
+          file_name,
         },
         file
       );
@@ -177,8 +179,12 @@ const Form = ({ addDataset }) => {
           <input
             type="file"
             placeholder=""
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={(e) => {
+              setFile(e.target.files[0]);
+              setFileName(e.target.files[0].name);
+            }}
             className=" p-2 bg-white border border-primary text-xl rounded-sm focus:blue focus:border-blue"
+            required
           />
         </div>
         <div className="flex px-5 my-10">
