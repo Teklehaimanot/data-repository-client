@@ -39,50 +39,40 @@ const DataList = () => {
     }
   };
 
-  // const addDataset = async (task) => {
-  //   const resOne = await axios(`${url}/api/dataset`, {
-  //     method:'POST',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //       'x-auth': `${localStorage.getItem('token')}`,
-  //     },
-  //     task,
-  //   });
-  //   const res = await resOne.data;
-  //   console.log('data', res);
-  // };
   const addDataset = async (task, file) => {
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
+    const formData = new FormData();
+    formData.append('file', file);
 
-      const uploadedFile = await axios.post(
-        `${url}/api/dataset/upload`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'x-auth': `${localStorage.getItem('token')}`,
-          },
-        }
-      );
-      console.log(uploadedFile.data);
-    } catch (error) {
-      console.log(error);
-    }
-    const res = await fetch(`${url}/api/dataset`, {
-      method: 'POST',
+    const reqOne = await axios.post(`${url}/api/dataset`, task, {
       headers: {
         'content-type': 'application/json',
         'x-auth': `${localStorage.getItem('token')}`,
       },
-      body: JSON.stringify(task),
     });
-    const data = await res.json();
-    setDataset([...dataset, data.dataset]);
-    setFormToggle(!formToggle);
-  };
+    const reqTwo = await axios.post(`${url}/api/dataset/upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'x-auth': `${localStorage.getItem('token')}`,
+      },
+    });
 
+    await axios
+      .all([reqOne, reqTwo])
+      .then(
+        axios.spread((...responses) => {
+          const responseOne = responses[0];
+          const responseTwo = responses[1];
+          // use/access the results
+          const data = responseOne.data;
+          setDataset([...dataset, data.dataset]);
+          setFormToggle(!formToggle);
+          console.log(responseTwo.data);
+        })
+      )
+      .catch((errors) => {
+        console.log(errors);
+      });
+  };
   return (
     <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
       <SearchBar onToggle={handleToggle} formToggle={formToggle} />

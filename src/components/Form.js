@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { BASE_URL } from '../base';
-import axios from 'axios';
-
 const Form = ({ addDataset }) => {
   const [dataset_name, setDatasetName] = useState('');
   const [data_type, setDatasetFormat] = useState('STATA');
