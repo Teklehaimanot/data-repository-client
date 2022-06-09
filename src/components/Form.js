@@ -43,7 +43,7 @@ const Form = ({ addDataset }) => {
         file
       );
       clearDataSet();
-      // addDataset(file);
+      addDataset(file);
     } catch (error) {
       alert(error);
     }
@@ -58,6 +58,7 @@ const Form = ({ addDataset }) => {
     setSexCoverage('');
     setStartDate('');
     setEndDate('');
+    setDatasetName('');
   };
   return (
     <div className="mx-20 my-10 bg-secondary rounded-lg shadow-xl ">

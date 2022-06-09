@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { BASE_URL } from '../base';
 import DataSetTitle from './DataSetTitle';
+import EditForm from './EditForm';
 import Form from './Form';
 import ListItem from './ListItem';
 import SearchBar from './SearchBar';
@@ -10,9 +11,14 @@ const DataList = () => {
   const url = BASE_URL;
   const [dataset, setDataset] = useState([]);
   const [formToggle, setFormToggle] = useState(false);
+  const [Popup, setPopup] = useState(false);
 
   const handleToggle = () => {
     setFormToggle(!formToggle);
+  };
+
+  const handlePopup = () => {
+    setPopup(!Popup);
   };
 
   useEffect(() => {
@@ -73,23 +79,30 @@ const DataList = () => {
       });
   };
   return (
-    <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
-      <SearchBar onToggle={handleToggle} formToggle={formToggle} />
-      {formToggle ? (
-        <Form addDataset={addDataset} />
-      ) : (
-        <table className="w-full text-left ">
-          <thead className=" text-xl text-primary bg-secondary ">
-            <DataSetTitle />
-          </thead>
-          <tbody>
-            {dataset.map((data) => (
-              <ListItem key={data._id} item={data} />
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+    <>
+      {Popup ? <EditForm handlePopup={handlePopup} /> : ''}
+      <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
+        <SearchBar onToggle={handleToggle} formToggle={formToggle} />
+        {formToggle ? (
+          <Form addDataset={addDataset} />
+        ) : (
+          <table className="w-full text-left ">
+            <thead className=" text-xl text-primary bg-secondary ">
+              <DataSetTitle />
+            </thead>
+            <tbody>
+              {dataset.map((data) => (
+                <ListItem
+                  key={data._id}
+                  handlePopup={handlePopup}
+                  item={data}
+                />
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </>
   );
 };
 
