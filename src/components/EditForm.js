@@ -7,8 +7,16 @@ const EditForm = ({ handlePopup, item, updateDataset }) => {
   const [sample_size, setSampleSize] = useState(item.sample_size);
   const [area_coverage, setAreaCoverage] = useState(item.area_coverage);
   const [sex_coverage, setSexCoverage] = useState(item.sex_coverage);
-  const [data_collection_start_date, setStartDate] = useState(item.data_collection_start_date);
-  const [data_collection_end_date, setEndDate] = useState(item.data_collection_end_date);
+  const [data_collection_start_date, setStartDate] = useState(new Date().toLocaleDateString('sq-AL', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }));
+  const [data_collection_end_date, setEndDate] = useState(new Date(item.data_collection_end_date).toLocaleDateString('sq-AL', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }));
   // const [file, setFile] = useState([]);
   const [file_name, setFileName] = useState(item.file_name);
 
@@ -166,7 +174,7 @@ const EditForm = ({ handlePopup, item, updateDataset }) => {
               Data Collection Start Date
             </label>
             <input
-              type="date"
+              type="text"
               placeholder="Start Date"
               onChange={(e) => setStartDate(e.target.value)}
               value={data_collection_start_date}
@@ -179,11 +187,10 @@ const EditForm = ({ handlePopup, item, updateDataset }) => {
               Data Collection End Date
             </label>
             <input
-              type="date"
+              type="text"
               placeholder="End Date"
               onChange={(e) => setEndDate(e.target.value)}
               value={data_collection_end_date}
-              defaultValue="09/07/2022"
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
               required
             />
