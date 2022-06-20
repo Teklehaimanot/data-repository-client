@@ -5,9 +5,8 @@ const SearchBar = ({ onToggle, formToggle }) => {
     <div className="flex justify-between p-6 ">
       <div
         onClick={onToggle}
-        className={`flex items-center bg-gray border border-gray text-${
-          formToggle ? 'red-light' : 'primary'
-        }  text-2xl rounded-lg px-5 py-2 hover:bg-blue hover:text-secondary`}
+        className={`flex items-center bg-gray border border-gray text-${formToggle ? 'red-light' : 'primary'
+          }  text-2xl rounded-lg px-5 py-2 hover:bg-blue hover:text-secondary`}
       >
         {formToggle ? 'Cancel' : 'Create'}
       </div>
@@ -17,7 +16,7 @@ const SearchBar = ({ onToggle, formToggle }) => {
             Search
           </label>
           <div className="relative w-full">
-            <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            {/* <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg
                 className="w-7 h-7 "
                 fill="currentColor"
@@ -30,7 +29,7 @@ const SearchBar = ({ onToggle, formToggle }) => {
                   clip-rule="evenodd"
                 ></path>
               </svg>
-            </div>
+            </div> */}
             <input
               type="text"
               id="simple-search"

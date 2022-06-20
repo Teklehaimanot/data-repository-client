@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { BASE_URL } from '../base';
 import DataSetTitle from './DataSetTitle';
-// import EditForm from './EditForm';
 import Form from './Form';
 import ListItem from './ListItem';
 import SearchBar from './SearchBar';
@@ -11,7 +10,6 @@ const DataList = () => {
   const url = BASE_URL;
   const [dataset, setDataset] = useState([]);
   const [formToggle, setFormToggle] = useState(false);
-
 
   const handleToggle = () => {
     setFormToggle(!formToggle);
@@ -25,7 +23,6 @@ const DataList = () => {
 
     getDataset();
   }, []);
-
   const fetchDataset = async () => {
     try {
       const res = await axios.get(`${url}/api/dataset`, {
@@ -41,10 +38,10 @@ const DataList = () => {
     }
   };
 
-  const addDataset = async (task, file) => {
+  const addDataset = async (item, file) => {
     const formData = new FormData();
     formData.append('file', file);
-    const reqOne = await axios.post(`${url}/api/dataset`, task, {
+    const reqOne = await axios.post(`${url}/api/dataset`, item, {
       headers: {
         'content-type': 'application/json',
         'x-auth': `${localStorage.getItem('token')}`,
@@ -63,7 +60,6 @@ const DataList = () => {
         axios.spread((...responses) => {
           const responseOne = responses[0];
           const responseTwo = responses[1];
-          // use/access the results
           const data = responseOne.data;
           setDataset([...dataset, data.dataset]);
           setFormToggle(!formToggle);
@@ -73,6 +69,22 @@ const DataList = () => {
       .catch((errors) => {
         console.log(errors);
       });
+  };
+
+  const updateDataset = async (id, item) => {
+    try {
+      const res = await axios.put(`${url}/api/dataset/${id}`, item, {
+        headers: {
+          'content-type': 'application/json',
+          'x-auth': `${localStorage.getItem('token')}`,
+        },
+      });
+      const data = await res.data.dataset;
+      console.log('item', item);
+      setDataset(dataset.map((d) => (d._id === id ? { ...d, ...item } : d)));
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -88,6 +100,7 @@ const DataList = () => {
             <tbody>
               {dataset.map((data) => (
                 <ListItem
+                  updateDataset={updateDataset}
                   key={data._id}
                   item={data}
                 />

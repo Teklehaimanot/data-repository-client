@@ -43,7 +43,6 @@ const Form = ({ addDataset }) => {
         file
       );
       clearDataSet();
-      addDataset(file);
     } catch (error) {
       alert(error);
     }

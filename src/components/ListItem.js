@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import EditForm from './EditForm';
 
-const ListItem = ({ item }) => {
+const ListItem = ({ item, updateDataset }) => {
   const [Popup, setPopup] = useState(false);
 
   const handlePopup = () => {
     setPopup(!Popup);
   };
-
-  console.log('myItem', item);
   return (
     <>
       <tr className="bg-white border-b text-dark-light border-blue border-doted ">
@@ -29,7 +27,15 @@ const ListItem = ({ item }) => {
           Edit
         </td>
       </tr>
-      {Popup ? <EditForm handlePopup={handlePopup} item={item} /> : ''}
+      {Popup ? (
+        <EditForm
+          handlePopup={handlePopup}
+          item={item}
+          updateDataset={updateDataset}
+        />
+      ) : (
+        ''
+      )}
     </>
   );
 };
