@@ -70,13 +70,13 @@ const EditForm = ({ handlePopup, item, updateDataset }) => {
   };
 
   return (
-    <div className="bg-primary overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-      <div className="mx-20 my-40  bg-secondary rounded-lg shadow-xl ">
-        <div className="flex flex-row justify-between px-5 pt-5 text-2xl text-primary">
+    <div className="bg-secondary  overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+      <div className="mx-20 my-40  bg-primary rounded-lg shadow-xl ">
+        <div className="flex flex-row justify-between px-5 pt-5 text-2xl text-secondary">
           <h1>Edit dataset</h1>
           <div
             onClick={handlePopup}
-            className="border hover:bg-blue hover:text-secondary px-5 py-3 border-primary text-2xl rounded-lg focus:blue focus:border-blue"
+            className="border hover:bg-blue hover:text-secondary px-5 py-3 border-secondary text-secondary text-2xl rounded-lg focus:blue focus:border-blue"
           >
             Cancel
           </div>
@@ -214,7 +214,7 @@ const EditForm = ({ handlePopup, item, updateDataset }) => {
             <input
               type="submit"
               value="Save"
-              className="border hover:bg-blue hover:text-secondary px-5 py-5 border-primary text-2xl rounded-lg focus:blue focus:border-blue"
+              className="border hover:bg-blue hover:text-secondary px-5 py-5 border-secondary text-secondary text-2xl rounded-lg focus:blue focus:border-blue"
             />
           </div>
         </form>
