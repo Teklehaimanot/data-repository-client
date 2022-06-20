@@ -17,8 +17,19 @@ const ListItem = ({ item, updateDataset }) => {
         <td className="px-6 py-4">{item.sample_size}</td>
         <td className="px-6 py-4">{item.area_coverage} </td>
         <td className="px-6 py-4">{item.sex_coverage} </td>
-        <td className="px-6 py-4">{item.data_collection_start_date}</td>
-        <td className="px-6 py-4">{item.data_collection_end_date} </td>
+        <td className="px-6 py-4">
+          {new Date(item.data_collection_start_date).toLocaleDateString(
+            'sq-AL',
+            { year: 'numeric', month: '2-digit', day: '2-digit' }
+          )}
+        </td>
+        <td className="px-6 py-4">
+          {new Date(item.data_collection_end_date).toLocaleDateString('sq-AL', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          })}
+        </td>
         <td className="px-6 py-4">{item.study_type} </td>
         <td
           className="px-6 py-4 text-right text-xl text-blue hover:underline"

@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { MdOutlineCancelPresentation } from 'react-icons/md';
-
-
 const EditForm = ({ handlePopup, item, updateDataset }) => {
 
   const [dataset_name, setDatasetName] = useState(item.dataset_name);
@@ -65,8 +62,8 @@ const EditForm = ({ handlePopup, item, updateDataset }) => {
   };
 
   return (
-    <div className="bg- overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-      <div className="mx-20 my-10 bg-secondary rounded-lg shadow-xl ">
+    <div className="bg-primary overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+      <div className="mx-20 my-40  bg-secondary rounded-lg shadow-xl ">
         <div className="flex flex-row justify-between px-5 pt-5 text-2xl text-primary">
           <h1>Edit dataset</h1>
           <div
@@ -186,6 +183,7 @@ const EditForm = ({ handlePopup, item, updateDataset }) => {
               placeholder="End Date"
               onChange={(e) => setEndDate(e.target.value)}
               value={data_collection_end_date}
+              defaultValue="09/07/2022"
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
               required
             />
