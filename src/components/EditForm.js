@@ -1,7 +1,12 @@
 import React from 'react';
 import { MdOutlineCancelPresentation } from 'react-icons/md';
 
-const EditForm = ({ handlePopup }) => {
+
+const EditForm = ({ handlePopup, item }) => {
+
+
+
+  console.log('item', item);
   return (
     <div className="bg- overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
       <div className="mx-20 my-10 bg-secondary rounded-lg shadow-xl ">
@@ -16,7 +21,7 @@ const EditForm = ({ handlePopup }) => {
         </div>
         <form
           className="flex flex-wrap justify-between "
-          //   onSubmit={handleSubmit}
+        //   onSubmit={handleSubmit}
         >
           <div className="flex flex-col p-4 w-1/3 shadow-xl my-10">
             <label className="text-primary text-2xl py-2" htmlFor="">
@@ -25,7 +30,7 @@ const EditForm = ({ handlePopup }) => {
             <input
               type="text"
               //   onChange={(e) => setDatasetName(e.target.value)}
-              //   value={dataset_name}
+              value={item.dataset_name}
               placeholder="Dataset Name"
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
               required
@@ -37,7 +42,7 @@ const EditForm = ({ handlePopup }) => {
             </label>
             <select
               //   onChange={(e) => setDatasetFormat(e.target.value)}
-              //   value={data_type}
+              value={item.data_type}
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
             >
               <option value="STATA">STATA</option>
@@ -52,7 +57,7 @@ const EditForm = ({ handlePopup }) => {
             </label>
             <select
               //   onChange={(e) => setStudyType(e.target.value)}
-              //   value={study_type}
+              value={item.study_type}
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
             >
               <option value="Survey">Survey</option>
@@ -67,7 +72,7 @@ const EditForm = ({ handlePopup }) => {
             <input
               type="number"
               //   onChange={(e) => setSampleSize(e.target.value)}
-              //   value={sample_size}
+              value={item.sample_size}
               placeholder="0"
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
               required
@@ -79,7 +84,7 @@ const EditForm = ({ handlePopup }) => {
             </label>
             <select
               //   onChange={(e) => setAreaCoverage(e.target.value)}
-              //   value={area_coverage}
+              value={item.area_coverage}
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
             >
               <option value="National">National</option>
@@ -94,7 +99,7 @@ const EditForm = ({ handlePopup }) => {
             </label>
             <select
               //   onChange={(e) => setSexCoverage(e.target.value)}
-              //   value={sex_coverage}
+              value={item.sex_coverage}
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
             >
               <option value="Male">Male</option>
@@ -110,7 +115,7 @@ const EditForm = ({ handlePopup }) => {
               type="date"
               placeholder="Start Date"
               //   onChange={(e) => setStartDate(e.target.value)}
-              //   value={data_collection_start_date}
+              value={item.data_collection_start_date}
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
               required
             />
@@ -123,12 +128,12 @@ const EditForm = ({ handlePopup }) => {
               type="date"
               placeholder="End Date"
               //   onChange={(e) => setEndDate(e.target.value)}
-              //   value={data_collection_end_date}
+              value={item.data_collection_end_date}
               className=" p-2 border border-primary text-xl rounded-sm focus:blue focus:border-blue"
               required
             />
           </div>
-          <div className="flex flex-col p-4 w-1/3 shadow-xl my-10">
+          {/* <div className="flex flex-col p-4 w-1/3 shadow-xl my-10">
             <label className="text-primary text-2xl py-2" htmlFor="">
               Upload File
             </label>
@@ -142,7 +147,7 @@ const EditForm = ({ handlePopup }) => {
               className=" p-2 bg-white border border-primary text-xl rounded-sm focus:blue focus:border-blue"
               required
             />
-          </div>
+          </div> */}
           <div className="flex px-5 my-10">
             <input
               type="submit"

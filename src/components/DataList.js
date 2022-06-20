@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { BASE_URL } from '../base';
 import DataSetTitle from './DataSetTitle';
-import EditForm from './EditForm';
+// import EditForm from './EditForm';
 import Form from './Form';
 import ListItem from './ListItem';
 import SearchBar from './SearchBar';
@@ -11,14 +11,10 @@ const DataList = () => {
   const url = BASE_URL;
   const [dataset, setDataset] = useState([]);
   const [formToggle, setFormToggle] = useState(false);
-  const [Popup, setPopup] = useState(false);
+
 
   const handleToggle = () => {
     setFormToggle(!formToggle);
-  };
-
-  const handlePopup = () => {
-    setPopup(!Popup);
   };
 
   useEffect(() => {
@@ -80,7 +76,6 @@ const DataList = () => {
   };
   return (
     <>
-      {Popup ? <EditForm handlePopup={handlePopup} /> : ''}
       <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
         <SearchBar onToggle={handleToggle} formToggle={formToggle} />
         {formToggle ? (
@@ -94,7 +89,6 @@ const DataList = () => {
               {dataset.map((data) => (
                 <ListItem
                   key={data._id}
-                  handlePopup={handlePopup}
                   item={data}
                 />
               ))}
