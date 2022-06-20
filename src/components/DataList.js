@@ -86,6 +86,21 @@ const DataList = () => {
       console.log(error);
     }
   };
+
+  const deleteDataset = async (id) => {
+    try {
+      const res = await axios.delete(`${url}/api/dataset/${id}`, {
+        headers: {
+          'content-type': 'application/json',
+          'x-auth': `${localStorage.getItem('token')}`,
+        },
+      });
+      const data = res.data.dataset;
+      setDataset(dataset.filter((d) => d._id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
@@ -100,6 +115,7 @@ const DataList = () => {
             <tbody>
               {dataset.map((data) => (
                 <ListItem
+                  deleteDataset={deleteDataset}
                   updateDataset={updateDataset}
                   key={data._id}
                   item={data}

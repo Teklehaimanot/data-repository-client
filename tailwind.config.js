@@ -1,5 +1,5 @@
 module.exports = {
-    content: ["./src/**/*.{js,jsx,ts,tsx}", ],
+    content: ["./src/**/*.{js,jsx,ts,tsx}",],
     theme: {
         screens: {
             sm: '680px',
@@ -12,7 +12,7 @@ module.exports = {
             'primary': '#4fa83c',
             'secondary': '#F4F1EE',
             'dark-light': '#888',
-            'red-light': '#ef4444',
+            'red-light': '#FA8072',
             'dark': '#222'
         },
 

@@ -30,6 +30,9 @@ const DataSetTitle = () => {
       <th scope="col" className="px-6 py-3">
         <span className="sr-only">Edit</span>
       </th>
+      <th scope="col" className="px-6 py-3">
+        <span className="sr-only">Delete</span>
+      </th>
     </tr>
   );
 };

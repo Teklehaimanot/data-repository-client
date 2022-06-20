@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import EditForm from './EditForm';
 
-const ListItem = ({ item, updateDataset }) => {
+const ListItem = ({ item, updateDataset, deleteDataset }) => {
   const [Popup, setPopup] = useState(false);
 
   const handlePopup = () => {
@@ -36,6 +36,12 @@ const ListItem = ({ item, updateDataset }) => {
           onClick={handlePopup}
         >
           Edit
+        </td>
+        <td
+          className="px-6 py-4 text-right text-xl text-red-light hover:underline"
+          onClick={() => deleteDataset(item._id)}
+        >
+          Delete
         </td>
       </tr>
       {Popup ? (
