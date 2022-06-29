@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserItem = ({ users }) => {
+const UserItem = ({ users, deleteUser }) => {
   return (
     <>
       {users.map((user) => (
@@ -14,7 +14,13 @@ const UserItem = ({ users }) => {
           <td className="px-6 py-4 text-right text-xl text-blue hover:underline">
             Edit
           </td>
-          <td className="px-6 py-4 text-right text-xl text-red-light hover:underline">
+          <td
+            className="px-6 py-4 text-right text-xl text-red-light hover:underline"
+            onClick={() => {
+              console.log(user);
+              deleteUser(user._id);
+            }}
+          >
             Delete
           </td>
         </tr>

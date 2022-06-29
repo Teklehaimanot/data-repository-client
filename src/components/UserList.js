@@ -48,6 +48,17 @@ const UserList = () => {
 
     };
 
+    const deleteUser = async (id) => {
+        try {
+            const res = await axios.delete(`${url}/api/user/${id}`);
+            const data = res.data.user;
+            console.log(data)
+            setUser(users.filter((d) => d._id !== id));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
             <SearchBar onToggle={handleToggle} formToggle={formToggle} />
@@ -56,7 +67,7 @@ const UserList = () => {
                     <DataSetTitle titles={titles} />
                 </thead>
                 <tbody>
-                    <UserItem users={users} />
+                    <UserItem deleteUser={deleteUser} users={users} />
                 </tbody>
             </table>)}
 
