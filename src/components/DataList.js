@@ -8,6 +8,7 @@ import SearchBar from './SearchBar';
 
 const DataList = () => {
   const url = BASE_URL;
+  const [title, setTitle] = useState([" Dataset_Name", "Dataset Type", "Sample Size", "Area Coverage", "Sex Coverage", "Data Collection Start Date", "Data Collection End Date", "Study Type"])
   const [dataset, setDataset] = useState([]);
   const [formToggle, setFormToggle] = useState(false);
 
@@ -110,7 +111,7 @@ const DataList = () => {
         ) : (
           <table className="w-full text-left ">
             <thead className=" text-xl text-primary bg-secondary ">
-              <DataSetTitle />
+              <DataSetTitle titles={title} />
             </thead>
             <tbody>
               {dataset.map((data) => (

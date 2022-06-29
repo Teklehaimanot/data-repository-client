@@ -1,14 +1,14 @@
 import React from 'react';
-import DataList from '../components/DataList';
 import SideBar from '../components/SideBar';
+import UserList from '../components/UserList';
 
-const Dashboard = () => {
+const User = () => {
   return (
     <div className="flex flex-row mt-10 ml-5">
       <SideBar />
-      <DataList />
+      <UserList />
     </div>
   );
 };
 
-export default Dashboard;
+export default User;
