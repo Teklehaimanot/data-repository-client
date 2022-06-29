@@ -13,7 +13,6 @@ const Form = ({ addDataset }) => {
   // const url = BASE_URL;
 
   const handleSubmit = async (e) => {
-    console.log(file);
     e.preventDefault();
     if (
       !dataset_name &&

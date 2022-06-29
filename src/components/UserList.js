@@ -4,11 +4,17 @@ import SearchBar from './SearchBar'
 import UserItem from './UserItem'
 import axios from 'axios'
 import { BASE_URL } from '../base'
+import UserForm from './UserForm'
 
 const UserList = () => {
     const [titles, setTitles] = useState(["Given Name", "Father's Name", "Email", "Role"])
     const [users, setUser] = useState([])
     const url = BASE_URL;
+    const [formToggle, setFormToggle] = useState(false);
+
+    const handleToggle = () => {
+        setFormToggle(!formToggle);
+    };
 
     useEffect(() => {
         const getDataset = async () => {
@@ -33,17 +39,27 @@ const UserList = () => {
         }
     };
 
+    const addUser = async (item) => {
+        const user = await axios.post(`${url}/api/user`, item);
+        const result = user.data;
+        console.log('res', result);
+        setUser([...users, result.user])
+        setFormToggle(!formToggle);
+
+    };
+
     return (
         <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
-            <SearchBar />
-            <table className="w-full text-left ">
+            <SearchBar onToggle={handleToggle} formToggle={formToggle} />
+            {formToggle ? <UserForm addUser={addUser} /> : (<table className="w-full text-left ">
                 <thead className=" text-xl text-primary bg-secondary ">
                     <DataSetTitle titles={titles} />
                 </thead>
                 <tbody>
                     <UserItem users={users} />
                 </tbody>
-            </table>
+            </table>)}
+
         </div>
     )
 }
