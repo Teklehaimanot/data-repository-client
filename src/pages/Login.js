@@ -20,7 +20,10 @@ const Login = () => {
       })
       .then((res) => {
         localStorage.setItem('token', res.data.token);
-        navigate('/dashboard');
+        if (res.data.role === 'Admin') {
+          navigate('/dashboard');
+        } else navigate('/home')
+
       })
       .catch((err) => {
         console.log(err);

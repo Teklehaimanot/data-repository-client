@@ -1,7 +1,5 @@
-import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
-import { BASE_URL } from '../base';
 
 const UserForm = ({ addUser }) => {
   const [name, setName] = useState('');

@@ -59,9 +59,27 @@ const UserList = () => {
         }
     };
 
+    const filteredUsers = (searchField) => {
+        setUser(users.filter((user) => {
+            return (
+                user
+                    .name
+                    .toLowerCase()
+                    .includes(searchField.toLowerCase()) ||
+                user
+                    .username
+                    .toLowerCase()
+                    .includes(searchField.toLowerCase())
+            );
+        })
+
+        )
+
+    }
+
     return (
         <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
-            <SearchBar onToggle={handleToggle} formToggle={formToggle} />
+            <SearchBar onToggle={handleToggle} formToggle={formToggle} filteredUsers={filteredUsers} />
             {formToggle ? <UserForm addUser={addUser} /> : (<table className="w-full text-left ">
                 <thead className=" text-xl text-primary bg-secondary ">
                     <DataSetTitle titles={titles} />
