@@ -102,10 +102,27 @@ const DataList = () => {
       console.log(error);
     }
   };
+
+  const filteredDatasets = (searchField) => {
+    setDataset(dataset.filter((data) => {
+      return (
+        data
+          .dataset_name
+          .toLowerCase()
+          .includes(searchField.toLowerCase())
+      );
+    })
+
+    )
+
+  }
+
+  console.log('data', dataset)
+
   return (
     <>
       <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
-        <SearchBar onToggle={handleToggle} formToggle={formToggle} />
+        <SearchBar onToggle={handleToggle} formToggle={formToggle} filteredUsers={filteredDatasets} />
         {formToggle ? (
           <Form addDataset={addDataset} />
         ) : (

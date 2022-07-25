@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ButtonCreate from './ButtonCreate';
 
 const SearchBar = ({ onToggle, formToggle, filteredUsers }) => {
 
@@ -11,13 +12,7 @@ const SearchBar = ({ onToggle, formToggle, filteredUsers }) => {
 
   return (
     <div className="flex justify-between p-6 ">
-      <div
-        onClick={onToggle}
-        className={`flex items-center bg-gray border border-gray text-${formToggle ? 'red-light' : 'primary'
-          }  text-2xl rounded-lg px-5 py-2 hover:bg-blue hover:text-secondary`}
-      >
-        {formToggle ? 'Cancel' : 'Create'}
-      </div>
+      <ButtonCreate onToggle={onToggle} formToggle={formToggle} />
       <div className="w-2/5 ">
         <form className="flex items-center" onClick={handleSearch}>
           <label for="simple-search" className="sr-only">
