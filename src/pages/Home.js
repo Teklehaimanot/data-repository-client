@@ -14,10 +14,7 @@ const Home = () => {
       </p>
       <div className="flex flex-row mt-5">
         <div className="m-6 p-3 text-secondary border-2 border-solid border-0 rounded-md bg-primary hover:bg-blue">
-          <Link to="/login"> Login as Admin</Link>
-        </div>
-        <div className="m-6 p-3  text-secondary border-2 border-solid border-0 rounded-md bg-primary hover:bg-blue ">
-          Login as User
+          <Link to="/login"> Login </Link>
         </div>
       </div>
     </div>

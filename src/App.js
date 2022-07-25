@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import User from './pages/User';
+import Repository from './pages/Repository';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/users" element={<User />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/home" element={<Repository />}></Route>
         </Routes>
       </Router>
     </div>
