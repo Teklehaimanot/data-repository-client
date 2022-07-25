@@ -25,6 +25,19 @@ function Repository() {
         getDataset();
     }, []);
 
+    const filteredDatasets = (searchField) => {
+        setDataset(dataset.filter((data) => {
+            return (
+                data
+                    .dataset_name
+                    .toLowerCase()
+                    .includes(searchField.toLowerCase())
+            );
+        })
+
+        )
+
+    }
     const fetchDataset = async () => {
         try {
             const res = await axios.get(`${url}/api/dataset`, {
@@ -58,7 +71,7 @@ function Repository() {
 
     return (
         <div className="w-100  shadow-2xl sm:rounded-lg ">
-            <SearchBar onToggle={handleToggle} formToggle={formToggle} displayButton={false} />
+            <SearchBar onToggle={handleToggle} formToggle={formToggle} displayButton={false} filteredUsers={filteredDatasets} />
             <table className="w-full text-left ">
                 <thead className=" text-xl text-primary bg-secondary ">
                     <DataSetTitle titles={title} />
