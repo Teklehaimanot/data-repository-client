@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import DataSetTitle from '../components/DataSetTitle'
 import SearchBar from '../components/SearchBar'
 import { BASE_URL } from '../base';
+import DataSetItem from '../components/DataSetItem';
+import fileDownload from 'js-file-download';
+import axios from 'axios';
 
 function Repository() {
     const url = BASE_URL;
@@ -12,15 +15,56 @@ function Repository() {
     const handleToggle = () => {
         setFormToggle(!formToggle);
     };
+
+    useEffect(() => {
+        const getDataset = async () => {
+            const getDatasetFromServer = await fetchDataset();
+            setDataset(getDatasetFromServer);
+        };
+
+        getDataset();
+    }, []);
+
+    const fetchDataset = async () => {
+        try {
+            const res = await axios.get(`${url}/api/dataset`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth': `${localStorage.getItem('token')}`,
+                },
+            });
+            const dataset = await res.data.dataset;
+            return dataset;
+        } catch (error) {
+            alert("can't reach the server");
+        }
+    };
+
+    const downloadFile = async (item) => {
+        try {
+            const res = await axios.post(`${url}/api/dataset/download`, { "file_name": item.file_name }, {
+                headers: {
+                    'x-auth': `${localStorage.getItem('token')}`,
+                },
+            })
+            const data = fileDownload(res.data, `${item.file_name}`)
+
+        } catch (error) {
+            console.log(error)
+
+        }
+
+    }
+
     return (
         <div className="w-100  shadow-2xl sm:rounded-lg ">
-            <SearchBar onToggle={handleToggle} formToggle={formToggle} />
+            <SearchBar onToggle={handleToggle} formToggle={formToggle} displayButton={false} />
             <table className="w-full text-left ">
                 <thead className=" text-xl text-primary bg-secondary ">
                     <DataSetTitle titles={title} />
                 </thead>
                 <tbody>
-                    {/* <UserItem deleteUser={deleteUser} users={users} /> */}
+                    <DataSetItem datasets={dataset} downloadFile={downloadFile} />
                 </tbody>
             </table>
 

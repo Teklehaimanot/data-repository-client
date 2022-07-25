@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ButtonCreate from './ButtonCreate';
 
-const SearchBar = ({ onToggle, formToggle, filteredUsers }) => {
+const SearchBar = ({ onToggle, formToggle, filteredUsers, displayButton }) => {
 
   const [searchField, setSearchField] = useState("");
 
@@ -12,7 +12,7 @@ const SearchBar = ({ onToggle, formToggle, filteredUsers }) => {
 
   return (
     <div className="flex justify-between p-6 ">
-      <ButtonCreate onToggle={onToggle} formToggle={formToggle} />
+      {displayButton && <ButtonCreate onToggle={onToggle} formToggle={formToggle} />}
       <div className="w-2/5 ">
         <form className="flex items-center" onClick={handleSearch}>
           <label for="simple-search" className="sr-only">

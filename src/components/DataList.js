@@ -122,7 +122,7 @@ const DataList = () => {
   return (
     <>
       <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
-        <SearchBar onToggle={handleToggle} formToggle={formToggle} filteredUsers={filteredDatasets} />
+        <SearchBar onToggle={handleToggle} formToggle={formToggle} filteredUsers={filteredDatasets} displayButton={true} />
         {formToggle ? (
           <Form addDataset={addDataset} />
         ) : (

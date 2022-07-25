@@ -79,7 +79,7 @@ const UserList = () => {
 
     return (
         <div className="w-5/6  shadow-2xl sm:rounded-lg float-right ">
-            <SearchBar onToggle={handleToggle} formToggle={formToggle} filteredUsers={filteredUsers} />
+            <SearchBar onToggle={handleToggle} formToggle={formToggle} filteredUsers={filteredUsers} displayButton={true} />
             {formToggle ? <UserForm addUser={addUser} /> : (<table className="w-full text-left ">
                 <thead className=" text-xl text-primary bg-secondary ">
                     <DataSetTitle titles={titles} />
