@@ -7,10 +7,7 @@ const Home = () => {
         Data Repository App
       </h2>
       <p className="text-lg  m-3 text-blue">
-        This demo app is made to show how to establishes a data center for
-        retrospective and prospective data types on identified research areas.
-        It works with the data analytics team to archive and store data with
-        standard formats.
+        This sample application was created to demonstrate how to set up a data center for both retrospective and prospective data kinds on chosen study fields. To archive and store data in standard forms, it collaborates with the data analytics team.
       </p>
       <div className="flex flex-row mt-5">
         <div className="m-6 p-3 text-secondary border-2 border-solid border-0 rounded-md bg-primary hover:bg-blue">
